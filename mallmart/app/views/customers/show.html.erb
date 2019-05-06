@@ -1,0 +1,30 @@
+<h1> Welcome, <%= @customer.full_name%>! </h1>
+
+<div class='user_details'>
+    <p>Email: <%= @customer.email%> </p>
+    <p>Phone Number: <%= @customer.phone_number%></p>
+    <p>Address: <%= @customer.address%> </p>
+
+</div>
+
+<div class='previous_purchases'>
+  <label>Previous Purchases:</label>
+  <% if !@customer.find_item.empty? %>
+
+  <table>
+    <tr>
+      <th>Item Name</th>
+      <th>Quantity</th>
+    </tr>
+    <% @customer.find_item.each do |key, value| %>
+      <tr>
+      <td> <%= key %> </td>
+      <td> <%= value%> </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <% else %>
+    <p>No items to display</p>
+  <% end %>
+</div>

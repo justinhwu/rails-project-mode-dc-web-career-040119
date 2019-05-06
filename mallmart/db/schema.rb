@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_163421) do
     t.string "category"
     t.text "description"
     t.float "price"
+    t.integer "supplier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,7 +44,6 @@ ActiveRecord::Schema.define(version: 2019_05_06_163421) do
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "inventory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

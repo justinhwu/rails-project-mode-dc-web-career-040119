@@ -6,6 +6,7 @@ class CreateInventories < ActiveRecord::Migration[5.2]
       t.string :category
       t.text :description
       t.float :price
+      t.integer :supplier_id
 
       t.timestamps
     end
