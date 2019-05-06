@@ -5,7 +5,8 @@ def index
 end
 
 def show
-@inventory= Inventories.find(params[:id])
+@inventory= Inventory.find(params[:id])
+render :layout => false
 end
 
 end
