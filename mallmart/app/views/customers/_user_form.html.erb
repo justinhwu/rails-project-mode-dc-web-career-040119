@@ -1,0 +1,47 @@
+<table style="text-align:right">
+  <%= form_for @customer do |cust| %>
+  <tr>
+    <td><%= cust.label :first_name %></td>
+  <td><%= cust.text_field :first_name %></td>
+  </tr>
+  <tr>
+    <td>
+  <%= cust.label :last_name %>
+  </td>
+  <td>
+  <%= cust.text_field :last_name %>
+  <td>
+  </tr>
+  <tr>
+    <td>
+  <%= cust.label :email %>
+  </td>
+  <td>
+  <%= cust.text_field :email %>
+  </td>
+  </tr>
+  <tr>
+    <td>
+  <%= cust.label :phone_number %>
+  </td>
+  <td>
+  <%= cust.text_field :phone_number %>
+  </td>
+  </tr>
+  <tr>
+    <td>
+  <%= cust.label :address %>
+  </td>
+  <td>
+  <%= cust.text_field :address %>
+  </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+  <%= cust.submit "Create Account" %>
+  </td>
+  </tr>
+  <% end %>
+
+</table>

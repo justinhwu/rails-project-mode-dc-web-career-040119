@@ -1,0 +1,4 @@
+<h2>Display Inventories</h2>
+<% @inventories.each do |inventory| %>
+  <%= link_to inventory.name, inventory_path(inventory) %><br>
+<% end %>
