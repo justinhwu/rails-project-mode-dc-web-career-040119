@@ -15,10 +15,14 @@
   </tr>
 </table>
 
-<%= form_tag ({controller: 'inventories',
-    action: 'add',
-    method: 'post'}) do %>
-
+<%= form_tag ('/purchases'), method:('post') do %>
+  <select name=purchased_quantity>
+    <% for i in (1..@inventory.quantity) do %>
+      <option value=<%= i %>> <%= i %>
+    <%end%>
+  </select>
+  <input type=hidden name=inventory_id value=<%= @inventory.id%>>
+  <input type=hidden name=customer_id value=1>
   <input type=submit value='add to cart'>
 <% end %>
 

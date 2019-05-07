@@ -11,7 +11,6 @@ class InventoriesController < ApplicationController
 
   def add
     cart << params[:inventory]
-    render :show
   end
 
 end

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :purchases
   resources :customers
 
-  post '/purchases', to: 'inventories#add'
+  post '/inventories/:id', to: 'purchases#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
