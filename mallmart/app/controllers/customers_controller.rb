@@ -35,7 +35,7 @@ def find_id
 end
 
 def strong_params
-  params.require(:customer).permit(:first_name, :last_name, :email, :phone_number, :address, :username)
+  params.require(:customer).permit(:first_name, :last_name, :email, :phone_number, :address, :username, :password)
 end
 
 end
