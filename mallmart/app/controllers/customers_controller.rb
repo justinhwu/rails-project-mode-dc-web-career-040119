@@ -10,10 +10,11 @@ class CustomersController < ApplicationController
 
 def new
   @customer= Customer.new
+  @customer.account.build
 end
 
 def create
-@customer = Customer.create(strong_params)
+  @customer = Customer.create(strong_params)
 end
 
 def edit
@@ -35,7 +36,7 @@ def find_id
 end
 
 def strong_params
-  params.require(:customer).permit!
+  params.require(:customer).permit(:first_name, :last_name, :email, :phone_number, :address, accounts_attributes: [:username])
 end
 
 end

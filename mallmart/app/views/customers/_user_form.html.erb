@@ -37,6 +37,13 @@
   </td>
   </tr>
   <tr>
+    <%= cust.fields_for :accounts do |a|%>
+    <td><%=a.label "Username"%></td>
+    <td><%=a.text_field :username%></td>
+    <%= a.hidden_field customer_id: @customer.id%>
+    <% end %>
+  </tr>
+  <tr>
     <td></td>
     <td>
   <%= cust.submit "Create Account" %>
