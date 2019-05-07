@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   has_many :purchases
   has_many :inventories, through: :purchases
+  belongs_to :account
 
   def full_name
     "#{self.first_name} #{self.last_name}"

@@ -11,6 +11,14 @@
 
   <body>
     <h1>Welcome to MallMart</h1>
+    <div>
+    <nav>
+      <ul>
+        <li><%= link_to "cart", purchases_path %></li>
+        <li><%= link_to "homepage", inventories_path %></li>
+      </ul>
+    </nav>
+    </div>
     <%= yield %>
   </body>
 </html>
