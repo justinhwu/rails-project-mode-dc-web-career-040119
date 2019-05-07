@@ -1,0 +1,22 @@
+<h1>Here is your cart</h1>
+
+<table cellspacing='15'>
+
+  <tr>
+    <th>Item Name</th>
+    <th>Item Quantity</th>
+    <th>Item Price</th>
+    <th>Item Total Price</th>
+  </tr>
+
+  <% @purchases.each do |purchase| %>
+  <tr>
+    <td><%= purchase.inventory.name %></td>
+    <td><%= purchase.purchased_quantity%></td>
+    <td><%= purchase.inventory.price%></td>
+    <td><%= purchase.get_item_price%></td>
+  </tr>
+  <% end %>
+
+</table>
+<%= link_to "Continue Shopping", inventories_path%>

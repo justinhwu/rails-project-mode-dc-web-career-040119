@@ -15,15 +15,11 @@
   </tr>
 </table>
 
-<%= form_tag ('/purchases'), method:('post') do %>
-  <select name=purchased_quantity>
-    <% for i in (1..@inventory.quantity) do %>
-      <option value=<%= i %>> <%= i %>
-    <%end%>
-  </select>
-  <input type=hidden name=inventory_id value=<%= @inventory.id%>>
-  <input type=hidden name=customer_id value=1>
-  <input type=submit value='add to cart'>
+<%= form_for @purchase do |f| %>
+  <%= f.select :purchased_quantity, (1..@inventory.quantity) %>
+  <%= f.hidden_field :inventory_id, value: @inventory.id %>
+  <%= f.hidden_field :customer_id, value: 1%>
+  <%= f.submit "add to cart"%>
 <% end %>
 
 <%= link_to "Go back to the Hompage", inventories_path%>

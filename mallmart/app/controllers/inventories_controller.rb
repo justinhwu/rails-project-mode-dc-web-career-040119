@@ -6,6 +6,7 @@ class InventoriesController < ApplicationController
 
   def show
     @inventory= Inventory.find(params[:id])
+    @purchase = Purchase.new
     render layout: false
   end
 
