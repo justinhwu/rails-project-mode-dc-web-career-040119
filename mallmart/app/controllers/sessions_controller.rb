@@ -8,4 +8,6 @@ class SessionsController < ApplicationController
     session[:customer_id] = @customer.id
     redirect_to customer_path(@customer.id)
   end
+
+
 end

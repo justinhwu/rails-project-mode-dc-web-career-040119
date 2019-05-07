@@ -1,7 +1,6 @@
 class CustomersController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update]
   def index
-
   end
 
   def show

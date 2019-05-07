@@ -24,31 +24,31 @@ Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    address: Faker::Address.street_address, username: Faker::Name.initials, password: '123'
                     }])
 Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    address: Faker::Address.street_address, username: Faker::Name.initials, password: '234'
                     }])
 Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    address: Faker::Address.street_address, username: Faker::Name.initials, password: '345'
                     }])
 Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    address: Faker::Address.street_address, username: Faker::Name.initials, password: '456'
                     }])
 Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    address: Faker::Address.street_address, username: Faker::Name.initials, password: '567'
                     }])
 
 
