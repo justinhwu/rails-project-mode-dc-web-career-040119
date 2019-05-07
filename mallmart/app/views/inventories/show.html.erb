@@ -15,4 +15,11 @@
   </tr>
 </table>
 
+<%= form_tag ({controller: 'inventories',
+    action: 'add',
+    method: 'post'}) do %>
+
+  <input type=submit value='add to cart'>
+<% end %>
+
 <%= link_to "Go back to the Hompage", inventories_path%>
