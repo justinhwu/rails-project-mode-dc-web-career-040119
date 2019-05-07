@@ -1,12 +1,12 @@
 class PurchasesController < ApplicationController
 
   def index
-    @purchases = Purchase.all
+    @customers = (Customer.find(session[:customer_id])).purchases
   end
 
   def create
-    @purchase = Purchase.new(purchases_params)
-    # inventory_id: params[:inventory_id], customer_id: params[:customer_id], purchased_quantity: params[:purchased_quantity]
+    @purchase = Purchase.create(purchases_params)
+    redirect_to purchases_path
   end
 
   private

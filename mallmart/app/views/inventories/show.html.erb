@@ -18,7 +18,7 @@
 <%= form_for @purchase do |f| %>
   <%= f.select :purchased_quantity, (1..@inventory.quantity) %>
   <%= f.hidden_field :inventory_id, value: @inventory.id %>
-  <%= f.hidden_field :customer_id, value: 1%>
+  <%= f.hidden_field :customer_id, value: session[:customer_id]%>
   <%= f.submit "add to cart"%>
 <% end %>
 

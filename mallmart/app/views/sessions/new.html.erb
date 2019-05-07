@@ -1,5 +1,11 @@
+<div>
 <%= form_for '/login' do %>
   <%= label :username, "Username" %>
   <%= text_field_tag :username %>
   <%= submit_tag "Login" %>
 <% end %>
+</div>
+
+<div>
+<%= link_to "Register a new account", new_customer_path%>
+</div>

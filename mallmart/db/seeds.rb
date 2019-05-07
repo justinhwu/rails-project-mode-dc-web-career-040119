@@ -24,38 +24,32 @@ Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address
+                    address: Faker::Address.street_address, username: Faker::Name.initials
                     }])
 Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address
-                    }])
-Customer.create([{first_name: Faker::Name.first_name,
-                                                            last_name: Faker::Name.last_name ,
-                                                            email:Faker::Internet.email ,
-                                                            phone_number: Faker::PhoneNumber.cell_phone,
-                                                            address: Faker::Address.street_address
-                                                            }])
-Customer.create([{first_name: Faker::Name.first_name,
-                    last_name: Faker::Name.last_name ,
-                    email:Faker::Internet.email ,
-                    phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address
+                    address: Faker::Address.street_address, username: Faker::Name.initials
                     }])
 Customer.create([{first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name ,
                     email:Faker::Internet.email ,
                     phone_number: Faker::PhoneNumber.cell_phone,
-                    address: Faker::Address.street_address
+                    address: Faker::Address.street_address, username: Faker::Name.initials
                     }])
-
-Account.create([{username: Faker::Name.initials, customer_id: 1}])
-Account.create([{username: Faker::Name.initials, customer_id: 2}])
-Account.create([{username: Faker::Name.initials, customer_id: 3}])
-Account.create([{username: Faker::Name.initials, customer_id: 4}])
-Account.create([{username: Faker::Name.initials, customer_id: 5}])
+Customer.create([{first_name: Faker::Name.first_name,
+                    last_name: Faker::Name.last_name ,
+                    email:Faker::Internet.email ,
+                    phone_number: Faker::PhoneNumber.cell_phone,
+                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    }])
+Customer.create([{first_name: Faker::Name.first_name,
+                    last_name: Faker::Name.last_name ,
+                    email:Faker::Internet.email ,
+                    phone_number: Faker::PhoneNumber.cell_phone,
+                    address: Faker::Address.street_address, username: Faker::Name.initials
+                    }])
 
 
 first_purchase = Purchase.create(inventory_id: 1, customer_id: 1, purchased_quantity: 4)

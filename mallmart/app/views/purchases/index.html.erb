@@ -9,12 +9,12 @@
     <th>Item Total Price</th>
   </tr>
 
-  <% @purchases.each do |purchase| %>
+  <% @customers.each do |customer| %>
   <tr>
-    <td><%= purchase.inventory.name %></td>
-    <td><%= purchase.purchased_quantity%></td>
-    <td><%= purchase.inventory.price%></td>
-    <td><%= purchase.get_item_price%></td>
+    <td><%= customer.inventory.name %></td>
+    <td><%= customer.purchased_quantity%></td>
+    <td><%= customer.inventory.price%></td>
+    <td><%= customer.get_item_price%></td>
   </tr>
   <% end %>
 

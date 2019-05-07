@@ -1,8 +1,6 @@
 class Customer < ApplicationRecord
   has_many :purchases
   has_many :inventories, through: :purchases
-  has_many :accounts
-  accepts_nested_attributes_for :accounts
 
   def full_name
     "#{self.first_name} #{self.last_name}"
