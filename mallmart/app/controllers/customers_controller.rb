@@ -13,8 +13,9 @@ end
 
 def create
   @customer = Customer.create(strong_params)
+  session[:customer_id] = @customer.id
   if @customer.errors.empty?
-     redirect_to customer_path(@customer.id)
+     redirect_to customer_path(session[:customer_id])
   else
      render :new
   end

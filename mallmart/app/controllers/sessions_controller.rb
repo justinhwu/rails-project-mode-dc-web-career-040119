@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
 
   def create
       @customer = Customer.find_by(username: params[:username])
-    if @customer
+    if @customer && @customer.authenticate(params[:password])
       session[:customer_id] = @customer.id
       redirect_to customer_path(@customer.id)
     else
-      flash["notice"] = "No user found with that username"
+      flash["notice"] = "Username or Password is incorrect!"
       render :new
     end
 

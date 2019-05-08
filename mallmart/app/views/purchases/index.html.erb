@@ -4,19 +4,28 @@
 
   <tr>
     <th>Item Name</th>
-    <th>Item Quantity</th>
     <th>Item Price</th>
     <th>Item Total Price</th>
+    <th>Item Quantity</th>
   </tr>
-
+  <% if !@customers.empty? %>
   <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.inventory.name %></td>
-    <td><%= customer.purchased_quantity%></td>
     <td><%= customer.inventory.price%></td>
     <td><%= customer.get_item_price%></td>
+    <%= form_for @purchase do |f| %>
+      <td><%= f.select customer.purchased_quantity, customer.inventory.quantity, (1..customer.inventory.quantity), {:selected => customer.purchased_quantity}%></td>
+      <%= f.hidden_field :inventory_id, value: customer.inventory.id %>
+      <%= f.hidden_field :customer_id, value: session[:customer_id]%>
+      <td><%= f.submit "Update #{customer.inventory.name} Quantity"%></td>
+    <% end %>
   </tr>
   <% end %>
+    <% else %>
+    <p> Your cart is empty! </p>
+    <%end%>
 
 </table>
+
 <%= link_to "Continue Shopping", inventories_path%>
