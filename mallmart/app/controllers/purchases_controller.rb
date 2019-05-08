@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :find_purchase, only: [:edit, :update]
+  before_action :find_purchase, only: [:update]
   def index
     @customers = (Customer.find(session[:customer_id])).purchases
 
@@ -10,11 +10,11 @@ class PurchasesController < ApplicationController
     redirect_to purchases_path
   end
 
-  def edit
-  end
-
   def update
-    
+    byebug
+    @purchase.update(inventory_id: params[:inventory_id], customer_id: params[:customer_id], purchased_quantity: params[:purchased_quantity])
+    # @purchase.update(purchases_params)
+    redirect_to purchases_path
   end
 
   private
