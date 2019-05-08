@@ -1,25 +1,32 @@
 class PurchasesController < ApplicationController
   before_action :find_purchase, only: [:update]
   def index
-    @customers = (Customer.find(session[:customer_id])).purchases
-
+    @purchases = Customer.find(session[:customer_id]
   end
 
   def create
-    @purchase = Purchase.create(purchases_params)
+    cart << params[:purchase]
     redirect_to purchases_path
   end
 
+
   def update
-    byebug
     @purchase.update(inventory_id: params[:inventory_id], customer_id: params[:customer_id], purchased_quantity: params[:purchased_quantity])
     # @purchase.update(purchases_params)
     redirect_to purchases_path
   end
 
+  def checkout
+  end
+
   private
   def find_purchase
     @purchase = Purchase.find(params[:id])
+  end
+
+  def get_cart_items
+    cart.each do |item|
+      
   end
 
   def purchases_params

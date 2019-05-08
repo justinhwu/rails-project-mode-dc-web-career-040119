@@ -10,6 +10,8 @@ class Customer < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+
+  #
   def find_item
     find_hash = Hash.new
     self.purchases.select do |purchase_details|

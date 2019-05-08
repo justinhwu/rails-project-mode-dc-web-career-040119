@@ -8,8 +8,8 @@
     <th>Item Total Price</th>
     <th>Item Quantity</th>
   </tr>
-  <% if !@customers.empty? %>
-  <% @customers.each do |purchase| %>
+  <% if !@purchases.empty? %>
+  <% @purchases.each do |purchase| %>
   <tr>
     <td><%= purchase.inventory.name %></td>
     <td><%= purchase.inventory.price%></td>
