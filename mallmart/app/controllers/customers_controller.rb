@@ -13,7 +13,12 @@ end
 
 def create
   @customer = Customer.create(strong_params)
-  redirect_to customer_path(@customer.id)
+  if @customer.errors.empty?
+     redirect_to customer_path(@customer.id)
+  else
+     render :new
+  end
+
 end
 
 def edit

@@ -4,9 +4,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @customer = Customer.find_by(username: params[:username])
-    session[:customer_id] = @customer.id
-    redirect_to customer_path(@customer.id)
+      @customer = Customer.find_by(username: params[:username])
+    if @customer
+      session[:customer_id] = @customer.id
+      redirect_to customer_path(@customer.id)
+    else
+      flash["notice"] = "No user found with that username"
+      render :new
+    end
+
   end
 
   def destroy

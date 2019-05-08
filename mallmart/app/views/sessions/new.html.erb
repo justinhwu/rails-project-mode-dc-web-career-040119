@@ -1,11 +1,13 @@
-<div>
-<%= form_for '/login' do %>
+<% if flash["notice"] %>
+    <div class="error"><%= flash["notice"] %></div>
+<% end %>
+
+<div><%= form_for '/login' do %>
   <%= label :username, "Username" %>
   <%= text_field_tag :username %>
   <%= submit_tag "Login" %>
-<% end %>
-</div>
+<% end %></div>
 
 <div>
-<%= link_to "Register a new account", new_customer_path%>
+<%= link_to "Register a new account", new_customer_path, method: "get"%>
 </div>
