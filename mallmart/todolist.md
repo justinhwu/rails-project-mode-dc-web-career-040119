@@ -1,15 +1,15 @@
 Main List
 <!-- 1. Create Logout button -->
 <!-- 2. Add in Passwords -->
-3. Authentications:
+<!-- 3. Authentications: -->
   <!-- - Validate that username doesn't already exist when creating a new user (unique username, case sensitivity) -->
   <!-- - No empty fields when creating new user -->
   <!-- - Login page - error message if username doesn't exit -->
-  - Login page - error message if password is incorrect
+  <!-- - Login page - error message if password is incorrect -->
 4. Create function that allows user to buy an item
-  - Once user buys an item, update item record to reflect change
+  <!-- - Once user buys an item, update item record to reflect change -->
   - Updating the cart to change amount of wanted items
-  - Deleting items from cart
+  <!-- - Deleting items from cart -->
 5. Displaying supplier details on item page
 6.
 

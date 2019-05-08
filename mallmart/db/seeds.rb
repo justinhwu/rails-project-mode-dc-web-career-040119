@@ -15,12 +15,15 @@ Supplier.destroy_all
 
 
 nike = Supplier.create(name: "Nike", description: "We sell stuff.")
+adidas = Supplier.create(name: "Adidas", description: "We sell Addidas stuff.")
+lays = Supplier.create(name: "Lays", description: "We sell snacks!")
 
 
-
-socks = Inventory.create!(name: "Socks", quantity: 10, category: "Accessories", description: "They're socks.", price: 15 , supplier_id: 1)
-track_pants = Inventory.create(name: "Trackpants", quantity: 50, category: "Coolest Pants", description: "Really, the coolest pants.", price: 20, supplier_id: 1)
-
+socks = Inventory.create!(name: "Socks", quantity: 10, category: "Accessories", description: "They're socks.", price: 15 , supplier_id: nike.id)
+track_pants = Inventory.create(name: "Trackpants", quantity: 50, category: "Coolest Pants", description: "Really, the coolest pants.", price: 20, supplier_id: nike.id)
+hyperspace_yeezys = Inventory.create(name: "Yeezy Boost 350 V2 Hyperspace", quantity: 12, category: "Shoe", description: "HYPE", price: 220, supplier_id: adidas.id)
+triple_white_ultraboosts = Inventory.create(name: "Triple White UltraBoosts", quantity: 25, category: "Shoe", description: "SQUAAAAAAA", price: 180, supplier_id: adidas.id)
+fritos = Inventory.create(name: "Fritos", quantity: 9000, category: "Snack", description: "The best snack", price: 1, supplier_id: lays.id)
 
 #Data for Customer
 Customer.create([{first_name: Faker::Name.first_name,
