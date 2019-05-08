@@ -1,7 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :find_purchase, only: [:update]
+  before_action :get_cart_items, only: [:index]
   def index
-    @purchases = Customer.find(session[:customer_id]
+    @purchases = Customer.find(session[:customer_id])
+    byebug
   end
 
   def create
@@ -25,8 +27,16 @@ class PurchasesController < ApplicationController
   end
 
   def get_cart_items
+    find_hash = Hash.new
     cart.each do |item|
-      
+      item_name = Inventory.find(item['inventory_id'])
+      if !find_hash[item_name.name]
+        find_hash[item_name.name] = [item['purchased_quantity'].to_i, item_name.price]
+      else
+        find_hash[item_name.name][0] += item['purchased_quantity'].to_i
+      end
+    end
+    find_hash
   end
 
   def purchases_params
