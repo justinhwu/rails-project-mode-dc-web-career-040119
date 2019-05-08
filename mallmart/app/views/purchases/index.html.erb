@@ -2,24 +2,19 @@
 
 <table cellspacing='15'>
 
+  <% if !@cart.empty? %>
+  <% @cart.each do |key, value| %>
   <tr>
     <th>Item Name</th>
     <th>Item Price</th>
     <th>Item Total Price</th>
     <th>Item Quantity</th>
   </tr>
-  <% if !@purchases.empty? %>
-  <% @purchases.each do |purchase| %>
+
   <tr>
-    <td><%= purchase.inventory.name %></td>
-    <td><%= purchase.inventory.price%></td>
-    <td><%= purchase.get_item_price%></td>
-    <%= form_tag "/purchases/#{purchase.id}", method: 'patch' do %>
-      <td><%= select_tag :purchased_quantity, options_from_collection_for_select((1..purchase.inventory.quantity).to_a, "to_i", "to_i"), include_blank: "#{purchase.purchased_quantity}"%></td>
-      <%= hidden_field_tag :inventory_id, purchase.inventory.id %>
-      <%= hidden_field_tag :customer_id, session[:customer_id]%>
-      <td><%= submit_tag "Update #{purchase.inventory.name} Quantity"%></td>
-    <% end %>
+    <td><%= key %></td>
+    <td>$<%= value[1]%></td>
+    <td><%= value[0] * value[1]%></td>
   </tr>
   <% end %>
     <% else %>
@@ -28,4 +23,8 @@
 
 </table>
 
+<div>
+<%= link_to "Clear Cart", clear_path, method: 'get'%><br>
+<%= link_to "Checkout", checkout_path%><br>
 <%= link_to "Continue Shopping", inventories_path%>
+</div>

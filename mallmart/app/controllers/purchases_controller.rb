@@ -1,9 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :find_purchase, only: [:update]
-  before_action :get_cart_items, only: [:index]
+
   def index
     @purchases = Customer.find(session[:customer_id])
-    byebug
+    @cart = get_cart_items
   end
 
   def create
@@ -11,6 +11,10 @@ class PurchasesController < ApplicationController
     redirect_to purchases_path
   end
 
+  def clear_cart
+    session[:cart].clear
+    redirect_to purchases_path
+  end
 
   def update
     @purchase.update(inventory_id: params[:inventory_id], customer_id: params[:customer_id], purchased_quantity: params[:purchased_quantity])
@@ -19,6 +23,10 @@ class PurchasesController < ApplicationController
   end
 
   def checkout
+    cart.each do |purchase|
+      Purchase.create(purchase)
+    end
+    session[:cart].clear
   end
 
   private

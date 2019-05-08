@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
+  get '/clear', to: 'purchases#clear_cart', as: 'clear'
 
   resources :suppliers
   resources :inventories
