@@ -3,7 +3,7 @@
 
 
 <% if !@purchases.empty?%>
-
+<div>
 <table cellspacing='15'>
 
 <tr>
@@ -40,6 +40,15 @@
 </tr>
 
 </table>
+</div>
+
+<div>
+  <%= form_for :purchases do |f|%>
+    <%= f.hidden_field :incart?, true%>
+    <%= f.hidden_field :inventory_id %>
+    <%= f.hidden_field session[:customer_id]%>
+    <%= f.fields_for :inventories
+</div>
 <% else %>
   <h3> You have no items to checkout with </h3>
 <% end %>

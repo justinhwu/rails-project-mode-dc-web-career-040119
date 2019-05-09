@@ -20,6 +20,12 @@ Stretch Features
 4. If item is out of stock, sets off some sort of timer that allows supplier to be contacted and resupplies that item
 5. Checkout as guest -> creates session id for them
 
-<%= form_tag "/purchases/#{@purchases.id}", method: 'post'%>
-  <%= select_tag :purchased_quantity, options_from_collection_for_select((1..((Inventory.find_by(name: key)).quantity)), "to_i", "to_i"), include_blank: @purchases.purchased_quantity %>
-  <%= submit_tag "Update item" %>
+<% @purchases.each do |purchase|%>
+<%= form_tag "/order/#{purchase.id}", method: 'patch' do %>
+  <%= hidden_field_tag purchase.incart?, true %>
+  <%= hidden_field_tag :inventory_id, purchase.inventory_id%>
+  <%= hidden_field_tag :customer_id, session[:customer_id]%>
+  <%= hidden_field_tag :purchased_quantity, purchase.purchased_quantity%>
+  <%= submit_tag "Place your order"%>
+<% end %>
+<% end %>
