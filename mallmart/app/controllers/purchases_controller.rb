@@ -27,7 +27,11 @@ class PurchasesController < ApplicationController
     @customer.each do |purchase|
       purchase.update(incart?: true)
     end
-
+    @customer.each do |purchase|
+      item = Inventory.find(purchase.inventory_id)
+      new_quantity = item.quantity - purchase.purchased_quantity
+      item.update(quantity: new_quantity)
+    end
     redirect_to place_order_path
   end
 
