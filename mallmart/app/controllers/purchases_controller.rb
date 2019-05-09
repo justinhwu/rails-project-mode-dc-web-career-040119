@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :find_purchase, only: [:update]
+  helper_method :confirmation
 
   def index
     @customer = Customer.find(session[:customer_id])
@@ -25,13 +26,18 @@ class PurchasesController < ApplicationController
   def update_cart
     @customer = (Customer.find(session[:customer_id])).purchases
     @customer.each do |purchase|
+      if (purchase.incart? == false)
+        confirmation << purchase
+      end
       purchase.update(incart?: true)
     end
+
     @customer.each do |purchase|
       item = Inventory.find(purchase.inventory_id)
       new_quantity = item.quantity - purchase.purchased_quantity
       item.update(quantity: new_quantity)
     end
+    confirmation
     redirect_to place_order_path
   end
 
@@ -51,7 +57,12 @@ class PurchasesController < ApplicationController
   end
 
   def place_order
+    @inventories = []
     @customer = session[:customer_id]
+    confirmation.each do |purchase|
+      @inventories << Inventory.find(purchase["inventory_id"])
+    end
+    @inventories
   end
 
   def destroy
@@ -60,6 +71,11 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def confirmation
+    session[:confirmation]
+  end
+
   def find_purchase
     @purchase = Purchase.find(params[:id])
   end

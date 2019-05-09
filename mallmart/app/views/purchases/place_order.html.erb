@@ -1,3 +1,35 @@
 <h1> Order Confirmed!</h1>
 
-<h3>Your order number is #109231209381290382190</h3>
+<h3>Your order number is </h3>
+
+
+<table cellspacing='15'>
+
+<% @total = 0 %>
+  <tr>
+    <th>Item Name</th>
+    <th>Item Price</th>
+    <th>Item Total Price</th>
+    <th>Item Quantity</th>
+  </tr>
+
+
+<% confirmation.each do |purchase|%>
+  <% @inventories.each do |inventory|%>
+      <tr>
+        <td> <%= inventory.name%> </td>
+        <td> <%= inventory.price%> </td>
+        <% total = (purchase["purchased_quantity"].to_f) * inventory.price%>
+        <td> <%= total %> </td>
+          <% @total += total %>
+        <td> <%= purchase["purchased_quantity"]%> </td>
+
+          <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <th>Total Price: </th>
+          <th><%= @total %></th>
+        </tr>
+
+        </table>
