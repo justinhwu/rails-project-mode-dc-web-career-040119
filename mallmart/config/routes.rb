@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   patch '/checkout/:id', to: 'purchases#update'
   delete "/checkout/:id", to: 'purchases#destroy'
 
-  get '/order', to: 'purchases#place_order', as: 'place_order'
-  patch '/order/:id', to: 'purchases#update_cart'
+  get '/order', to: 'purchases#update_cart', as: 'update_cart'
+  get '/confirmation', to: 'purchases#place_order', as: 'place_order'
 
   delete "/logout", to: "sessions#destroy", as: "logout"
   post '/inventories/:id', to: 'purchases#create'

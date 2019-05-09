@@ -2,53 +2,57 @@
 
 
 
+
 <% if !@purchases.empty?%>
-<div>
 <table cellspacing='15'>
 
-<tr>
-  <th>Item Name</th>
-  <th>Item Price</th>
-  <th>Item Total Price</th>
-  <th>Item Quantity</th>
-</tr>
-<% @total = 0 %>
-<% @purchases.each do |purchase|%>
-<tr>
-  <td> <%= purchase.inventory.name%> </td>
-  <td> <%= purchase.inventory.price%> </td>
-  <% total = purchase.get_item_price%>
-  <td> <%= total %> </td>
-    <% @total += total %>
+    <tr>
+      <th>Item Name</th>
+      <th>Item Price</th>
+      <th>Item Total Price</th>
+      <th>Item Quantity</th>
+    </tr>
 
-  <%= form_tag "/checkout/#{purchase.id}", method: 'patch' do %>
-    <td><%= select_tag :purchased_quantity, options_from_collection_for_select((1..purchase.inventory.quantity), "to_i", "to_i"), include_blank: purchase.purchased_quantity%></td>
-    <%= hidden_field_tag :inventory_id, purchase.inventory_id%>
-    <%= hidden_field_tag :customer_id, session[:customer_id]%>
-    <td><%= submit_tag "Update item quantity"%></td>
-  <% end %>
 
-  <%= form_tag "/checkout/#{purchase.id}", method: 'delete' do %>
-    <td><%= submit_tag "Remove this item from your checkout"%></td>
-  <%end%>
+  <% @total = 0 %>
+  <% @purchases.each do |purchase|%>
 
-</tr>
-<% end %>
-<tr>
-  <th>Total Price: </th>
-  <th><%= @total %></th>
-</tr>
+      <tr>
+        <td> <%= purchase.inventory.name%> </td>
+        <td> <%= purchase.inventory.price%> </td>
+        <% total = purchase.get_item_price%>
+        <td> <%= total %> </td>
+          <% @total += total %>
 
-</table>
-</div>
+          <%= form_tag "/checkout/#{purchase.id}", method: 'patch' do %>
+            <td><%= select_tag :purchased_quantity, options_from_collection_for_select((1..purchase.inventory.quantity), "to_i", "to_i"), include_blank: purchase.purchased_quantity%></td>
+            <%= hidden_field_tag :inventory_id, purchase.inventory_id%>
+            <%= hidden_field_tag :customer_id, session[:customer_id]%>
+            <td><%= submit_tag "Update item quantity"%></td>
+          <% end %>
 
-<div>
-  <%= form_for :purchases do |f|%>
-    <%= f.hidden_field :incart?, true%>
-    <%= f.hidden_field :inventory_id %>
-    <%= f.hidden_field session[:customer_id]%>
-    <%= f.fields_for :inventories
-</div>
+          <%= form_tag "/checkout/#{purchase.id}", method: 'delete' do %>
+            <td><%= submit_tag "Remove this item from your checkout"%></td>
+          <%end%>
+
+
+
+
+  <!--Ends each iterator statement  -->
+    <% end %>
+  </tr>
+  <tr>
+    <th>Total Price: </th>
+    <th><%= @total %></th>
+  </tr>
+
+  </table>
+
+  <%= link_to "Place Order", update_cart_path %>
+
+
+<!--Ends first if statement  -->
 <% else %>
   <h3> You have no items to checkout with </h3>
+
 <% end %>

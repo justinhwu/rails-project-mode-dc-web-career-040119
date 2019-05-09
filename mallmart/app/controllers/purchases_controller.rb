@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :find_purchase, only: [:update, :update_cart]
+  before_action :find_purchase, only: [:update]
 
   def index
     @customer = Customer.find(session[:customer_id])
@@ -17,25 +17,30 @@ class PurchasesController < ApplicationController
   end
 
   def update
-    @purchase.update(inventory_id: params[:inventory_id], customer_id: params[:customer_id], purchased_quantity: params[:purchased_quantity], incart?: true)
+    @purchase.update(inventory_id: params[:inventory_id], customer_id: params[:customer_id], purchased_quantity: params[:purchased_quantity])
     # @purchase.update(purchases_params)
     redirect_to checkout_path
   end
 
   def update_cart
-    @purchase.update(incart?: params[:incart?])
+    @customer = (Customer.find(session[:customer_id])).purchases
+    @customer.each do |purchase|
+      purchase.update(incart?: true)
+    end
+
     redirect_to place_order_path
   end
 
   def checkout
     cart.each do |purchase|
-      Purchase.create(purchase)
+      Purchase.find_or_create_by(purchase)
     end
     session[:cart].clear
-    @purchases = (Customer.find(session[:customer_id])).purchases
+    @purchases = ((Customer.find(session[:customer_id])).purchases)
   end
 
   def place_order
+    @customer = session[:customer_id]
 
   end
 
