@@ -1,1 +1,45 @@
-<h1> Your Order is being processed </h1>
+<h1> Please verify your order</h1>
+
+
+
+<% if !@purchases.empty?%>
+
+<table cellspacing='15'>
+
+<tr>
+  <th>Item Name</th>
+  <th>Item Price</th>
+  <th>Item Total Price</th>
+  <th>Item Quantity</th>
+</tr>
+<% @total = 0 %>
+<% @purchases.each do |purchase|%>
+<tr>
+  <td> <%= purchase.inventory.name%> </td>
+  <td> <%= purchase.inventory.price%> </td>
+  <% total = purchase.get_item_price%>
+  <td> <%= total %> </td>
+    <% @total += total %>
+
+  <%= form_tag "/checkout/#{purchase.id}", method: 'patch' do %>
+    <td><%= select_tag :purchased_quantity, options_from_collection_for_select((1..purchase.inventory.quantity), "to_i", "to_i"), include_blank: purchase.purchased_quantity%></td>
+    <%= hidden_field_tag :inventory_id, purchase.inventory_id%>
+    <%= hidden_field_tag :customer_id, session[:customer_id]%>
+    <td><%= submit_tag "Update item quantity"%></td>
+  <% end %>
+
+  <%= form_tag "/checkout/#{purchase.id}", method: 'delete' do %>
+    <td><%= submit_tag "Remove this item from your checkout"%></td>
+  <%end%>
+
+</tr>
+<% end %>
+<tr>
+  <th>Total Price: </th>
+  <th><%= @total %></th>
+</tr>
+
+</table>
+<% else %>
+  <h3> You have no items to checkout with </h3>
+<% end %>

@@ -6,11 +6,12 @@ Rails.application.routes.draw do
 
   resources :suppliers
   resources :inventories
-  resources :purchases
+  resources :purchases, except: [:update]
   resources :customers
   get '/customers/new', to: 'customers#show'
-  patch '/purchases/:id', to: 'purchases#update'
   get '/checkout', to: 'purchases#checkout', as: 'checkout'
+  patch '/checkout/:id', to: 'purchases#update'
+  delete "/checkout/:id", to: 'purchases#destroy'
   delete "/logout", to: "sessions#destroy", as: "logout"
   post '/inventories/:id', to: 'purchases#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

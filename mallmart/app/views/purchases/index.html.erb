@@ -3,28 +3,35 @@
 <table cellspacing='15'>
 
   <% if !@cart.empty? %>
-  <% @cart.each do |key, value| %>
   <tr>
     <th>Item Name</th>
     <th>Item Price</th>
     <th>Item Total Price</th>
     <th>Item Quantity</th>
   </tr>
-
+  <% @total = 0 %>
+  <% @cart.each do |key, value| %>
   <tr>
     <td><%= key %></td>
     <td>$<%= value[1]%></td>
-    <td><%= value[0] * value[1]%></td>
+    <% total = (value[0] * value[1])%>
+    <td><%= total %></td>
+    <td><%= value[0]%></td>
+    <% @total += total %>
   </tr>
-  <% end %>
-    <% else %>
+    <% end %>
+  <tr>
+    <th>Total Price: </th>
+    <th><%= @total %></th>
+  </tr>
+  <% else %>
     <p> Your cart is empty! </p>
-    <%end%>
+  <%end%>
 
 </table>
 
 <div>
 <%= link_to "Clear Cart", clear_path, method: 'get'%><br>
-<%= link_to "Checkout", checkout_path%><br>
+<%= link_to "Checkout", checkout_path, method: 'get'%><br>
 <%= link_to "Continue Shopping", inventories_path%>
 </div>
