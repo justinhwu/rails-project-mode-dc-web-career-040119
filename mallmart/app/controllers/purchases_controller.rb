@@ -41,11 +41,17 @@ class PurchasesController < ApplicationController
     end
     session[:cart].clear
     @purchases = ((Customer.find(session[:customer_id])).purchases)
+    @check = []
+    @purchases.each do |purchase|
+      if (purchase.incart? == false)
+        @check << purchase
+      end
+    end
+    @check
   end
 
   def place_order
     @customer = session[:customer_id]
-
   end
 
   def destroy

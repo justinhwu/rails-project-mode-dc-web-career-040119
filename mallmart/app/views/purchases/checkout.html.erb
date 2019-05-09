@@ -1,22 +1,18 @@
 <h1> Please verify your order</h1>
 
 
-
-
-<% if !@purchases.empty?%>
+<% if !@purchases.empty? && !@check.empty? %>
 <table cellspacing='15'>
 
-    <tr>
-      <th>Item Name</th>
-      <th>Item Price</th>
-      <th>Item Total Price</th>
-      <th>Item Quantity</th>
-    </tr>
+<% @total = 0 %>
+  <tr>
+    <th>Item Name</th>
+    <th>Item Price</th>
+    <th>Item Total Price</th>
+    <th>Item Quantity</th>
+  </tr>
 
-
-  <% @total = 0 %>
-  <% @purchases.each do |purchase|%>
-
+<% @check.each do |purchase|%>
       <tr>
         <td> <%= purchase.inventory.name%> </td>
         <td> <%= purchase.inventory.price%> </td>
@@ -39,6 +35,9 @@
 
 
   <!--Ends each iterator statement  -->
+
+
+
     <% end %>
   </tr>
   <tr>
@@ -47,12 +46,11 @@
   </tr>
 
   </table>
-
   <%= link_to "Place Order", update_cart_path %>
 
-
-<!--Ends first if statement  -->
 <% else %>
   <h3> You have no items to checkout with </h3>
 
 <% end %>
+
+<!--Ends first if statement  -->
