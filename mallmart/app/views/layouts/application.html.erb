@@ -36,7 +36,9 @@
     <div class="container-fluid">
       <div class="row Welcome-message">
         <div class="col-2 logo">
+          <% if !@not_show_log %>
           <%= image_tag "logo1.png", height: '250', width: '250', alt: "company logo" %>
+          <%  end %>
         </div>
       </div>
     <div>
@@ -64,10 +66,6 @@
         <li class="nav-item active">
           <%= link_to "Login", login_path, class: "nav-link" %>
         </li>
-          <%end%>
-          <% else %>
-          <%= flash["notice"] = "Processing Order"%>
-
           <%end%>
       </ul>
       </div>

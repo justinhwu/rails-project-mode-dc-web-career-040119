@@ -1,17 +1,20 @@
-<h1> Please verify your order</h1>
+<h1 class="h1"> Please verify your order</h1>
 
 
 <% if !@purchases.empty? && !@check.empty? %>
-<table cellspacing='15'>
-
+<table class="table">
+<thead class="thead-dark">
 <% @total = 0 %>
   <tr>
-    <th>Item Name</th>
-    <th>Item Price</th>
-    <th>Item Total Price</th>
-    <th>Item Quantity</th>
+    <th scope="col">Item Name</th>
+    <th scope="col">Item Price</th>
+    <th scope="col">Item Total Price</th>
+    <th scope="col">Item Quantity</th>
+    <th scope="col">Update Order Quantity</th>
+    <th scope="col">Delete Order</th>
   </tr>
-
+</thead>
+<tbody>
 <% @check.each do |purchase|%>
       <tr>
         <td> <%= purchase.inventory.name%> </td>
@@ -24,33 +27,24 @@
             <td><%= select_tag :purchased_quantity, options_from_collection_for_select((1..purchase.inventory.quantity), "to_i", "to_i"), include_blank: purchase.purchased_quantity%></td>
             <%= hidden_field_tag :inventory_id, purchase.inventory_id%>
             <%= hidden_field_tag :customer_id, session[:customer_id]%>
-            <td><%= submit_tag "Update item quantity"%></td>
+            <td><%= submit_tag "Update"%></td>
           <% end %>
 
           <%= form_tag "/checkout/#{purchase.id}", method: 'delete' do %>
-            <td><%= submit_tag "Remove this item from your checkout"%></td>
+            <td><%= submit_tag "Remove"%></td>
           <%end%>
-
-
-
-
   <!--Ends each iterator statement  -->
-
-
 
     <% end %>
   </tr>
-  <tr>
-    <th>Total Price: </th>
-    <th><%= @total %></th>
-  </tr>
-
+</tbody>
   </table>
-  <%= link_to "Place Order", update_cart_path %>
-
+  <div class="row t-row">
+  <div class="col-2"><%= link_to "Place Order", update_cart_path, class: 'chk-link' %></div>
+  <div class="col-8 total-tag">Total Price: <%= @total %></div>
+</div>
 <% else %>
-  <h3> You have no items to checkout with </h3>
-
+  <h3 class="h3"> You have no items to checkout with </h3>
 <% end %>
 
 <!--Ends first if statement  -->

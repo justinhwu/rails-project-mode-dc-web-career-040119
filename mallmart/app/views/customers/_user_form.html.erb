@@ -6,68 +6,45 @@
     </ul>
 <% end %>
 
-
-<table style="text-align:right">
+  <div class="reg-wrapper">
   <%= form_for @customer do |cust| %>
-  <tr>
-    <td><%= cust.label :first_name %></td>
-  <td><%= cust.text_field :first_name %></td>
-  </tr>
-  <tr>
-    <td>
-  <%= cust.label :last_name %>
-  </td>
-  <td>
-  <%= cust.text_field :last_name %>
-  <td>
-  </tr>
-  <tr>
-    <td>
-  <%= cust.label :email %>
-  </td>
-  <td>
-  <%= cust.text_field :email %>
-  </td>
-  </tr>
-  <tr>
-    <td>
-  <%= cust.label :phone_number %>
-  </td>
-  <td>
-  <%= cust.text_field :phone_number %>
-  </td>
-  </tr>
-  <tr>
-    <td>
-  <%= cust.label :address %>
-  </td>
-  <td>
-  <%= cust.text_field :address %>
-  </td>
-  </tr>
-  <tr>
-    <td>
-  <%= cust.label :username %>
-  </td>
-  <td>
-  <%= cust.text_field :username %>
-  </td>
-  </tr>
-  <tr>
-    <td>
-  <%= cust.label :password %>
-  </td>
-  <td>
-  <%= cust.password_field :password %>
-  </td>
-  </tr>
+  <div class="form-row reg-form">
+    <div class="col-4">
+    <%= cust.text_field :first_name, placeholder: "First name", class: "form-control" %>
+    </div>
+    <div class="col-4">
+    <%= cust.text_field :last_name, placeholder: "Last name", class: "form-control" %>
+    </div>
+    </div>
 
-  <tr>
-    <td></td>
-    <td>
-  <%= cust.submit "Create Account" %>
-  </td>
-  </tr>
+    <div class="form-row reg-form">
+      <div class="col-4">
+    <%= cust.text_field :email, placeholder: "Email", class: "form-control" %>
+    </div>
+    <div class="col-4">
+    <%= cust.text_field :phone_number, placeholder: "Phone number", class: "form-control" %>
+    </div>
+    </div>
+
+    <div class="form-row reg-form">
+      <div class="col-4">
+    <%= cust.text_field :address, placeholder: "Address", class: "form-control" %>
+    </div>
+    <div class="col-4">
+    <%= cust.text_field :username, placeholder: "Username", class: "form-control" %>
+    </div>
+    </div>
+
+    <div class= "form-row reg-form">
+      <div class="col-4">
+    <%= cust.password_field :password, placeholder: "Password", class: "form-control" %>
+    </div>
+    </div>
+
+    <div class= "form-row reg-form">
+      <div class="col-2">
+    <%= cust.submit "Create Account" %>
+    </div>
+    </div>
   <% end %>
-
-</table>
+  </div>

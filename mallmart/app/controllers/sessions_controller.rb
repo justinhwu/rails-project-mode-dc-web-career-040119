@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @not_show_log = true
   end
 
   def create

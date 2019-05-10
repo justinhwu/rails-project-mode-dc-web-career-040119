@@ -2,9 +2,9 @@
     <div class="error"><%= flash["notice"] %></div>
 <% end %>
 
-<div class="" id="login-form">
+<div class=" col-6 login-form" id="login-form">
 <%= form_for '/login',  html:  {class: "form-sign", id: "form-sign"}   do %>
-  <%= image_tag "logo1.png", height: '200', width: '200', alt: "company logo", class: "mb-4" %>
+<%= image_tag "logo1.png", height: '200', width: '200', alt: "company logo", class: "mb-4" %>
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
   <%= label :username, "Username",  class: "sr-only"%>
   <%= text_field_tag :username, nil,  class: "form-control"%>
