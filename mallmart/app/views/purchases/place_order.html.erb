@@ -1,9 +1,13 @@
-<h1> Order Confirmed!</h1>
+<div id="header_div">
+<h1 id="order_header"> Order Confirmed!</h1>
 
-<h3>Your order number is </h3>
+<h3 id="num_header">Your order number is #1450394</h3>
+</div>
 
-<table cellspacing='15'>
-  <tr>
+
+<div>
+<table id="confirmation_table">
+  <tr id="header_row">
     <th>Item Name</th>
     <th>Item Price</th>
     <th>Item Total Price</th>
@@ -11,7 +15,7 @@
   </tr>
   <% @total = 0 %>
   <% @confirmation.each do |key, value| %>
-  <tr>
+  <tr id="data_row">
     <td><%= key %></td>
     <td>$<%= value[1]%></td>
     <% total = (value[0] * value[1])%>
@@ -25,6 +29,6 @@
     <th>$<%= @total %></th>
   </tr>
   </table>
-  <div>
+</div>
 
 <%= link_to "Go back to homepage", destroy_order_path, method: 'get' %>

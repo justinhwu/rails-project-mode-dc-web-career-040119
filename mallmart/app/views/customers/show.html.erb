@@ -1,22 +1,23 @@
 <h1> Welcome, <%= @customer.full_name%>! </h1>
 
 <div class='user_details'>
-    <p>Email: <%= @customer.email%> </p>
-    <p>Phone Number: <%= @customer.phone_number%></p>
-    <p>Address: <%= @customer.address%> </p>
-    <p>Username: <%= @customer.username%></p>
-
+    <label id="classifier">Email:  </label> <%= @customer.email%><br>
+    <label id="classifier">Phone Number: </label> <%= @customer.phone_number%><br>
+    <label id="classifier">Address:  </label> <%= @customer.address%><br>
+    <label id="classifier">Username: </label>  <%= @customer.username%><br>
 </div>
-  <label>Previous Purchases:</label>
+  <label id="classifier" >Previous Purchases:</label>
+
+<div>
   <% if !@new_hash.empty? %>
-  <table cellspacing='15'>
+  <table id="cust_table">
     <% @new_hash.each do |order_date, purchase|%>
       <tr>
-        <th>Purchases for: <%= order_date %> o'clock</th>
+        <th id="purchase_header">Purchases for: <%= order_date %> o'clock</th>
       </tr>
       <tr>
-        <th>Item Name</th>
-        <th>Quantity</th>
+        <th id="classifier">Item Name</th>
+        <th id="classifier">Quantity</th>
       </tr>
 
       <% purchase.each do |item|%>
@@ -30,3 +31,4 @@
   <% else %>
     <p>No items to display</p>
   <% end %>
+</div>
