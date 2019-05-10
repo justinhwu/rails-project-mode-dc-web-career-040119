@@ -5,5 +5,5 @@
 </div>
 
 <% @inventories.each do |inventory| %>
-  <%= link_to inventory.name, inventory_path(inventory) %><br>
+  <%= button_to inventory.name, inventory_path(inventory), method: 'get' %><br>
 <% end %>

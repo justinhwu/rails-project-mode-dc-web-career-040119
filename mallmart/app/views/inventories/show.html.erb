@@ -1,4 +1,9 @@
+<div>
+<p id="image_class"><%= image_tag image_array[@inventory.id - 1], height: "250", width: "250"%></p>
+</div>
+
 <h2> <%= @inventory.name %> Details </h2>
+
 
 <table class= "table table-dark">
   <thead>
@@ -33,7 +38,7 @@
   <%= f.hidden_field :customer_id, value: session[:customer_id]%>
   <%= f.submit "add to cart"%>
   <% end %>
-  <%= link_to "Go back to the Hompage", inventories_path%>
+  <%= button_to "Go back to the Hompage", inventories_path, method: "get"%>
 <%
 else
 get_redirection
