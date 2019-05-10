@@ -27,11 +27,11 @@
     </div>
   <% else %>
     <p> Your cart is empty! </p>
-  <%end%>
+  <%end%><br>
 
 
 <div>
-<%= link_to "Clear Cart", clear_path, method: 'get'%><br>
-<%= link_to "Checkout", checkout_path, method: 'get'%><br>
-<%= link_to "Continue Shopping", inventories_path%>
+<%= button_to "Clear Cart", clear_path, method: 'get'%><br>
+<%= button_to "Checkout", checkout_path, method: 'get'%><br>
+<%= button_to "Continue Shopping", inventories_path, method: 'get'%>
 </div>

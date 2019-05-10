@@ -46,7 +46,7 @@
   </tr>
 
   </table>
-  <%= link_to "Place Order", update_cart_path %>
+  <%= button_to "Place Order", update_cart_path, method: 'get' %>
 
 <% else %>
   <h3> You have no items to checkout with </h3>

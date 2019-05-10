@@ -39,14 +39,67 @@ nav ul li {
  }
 
 .logo{
-  margin-top: 20px;
+  margin: center;
 }
 
 .total-price{
   color: red;
 }
 
+//customer show
+#cust_table{
+  display: inline-table;
+}
 
+#purchase_header{
+  border: 3px solid black;
+  font-weight: bolder;
+}
+
+#image_class{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  width: 50%;
+}
+
+#classifier{
+  color: black;
+  font-weight: bolder;
+}
+
+th#classifier {
+  text-decoration: underline;
+}
+
+// Confirmation page css
+#header_div{
+  margin-bottom: 100px;
+}
+#order_header {
+  margin-left: center;
+  margin-right: center;
+}
+
+#num_header {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#confirmation_table {
+  display: inline-table;
+  border-spacing: 15px;
+}
+#header_row th{
+  color: black;
+  font-weight: bolder;
+  border: 3px solid black;
+}
+
+#data_row td{
+  border-spacing: 15px;
+}
 // login css
 html,
 body {
@@ -58,8 +111,8 @@ body {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 70px;
+  padding-bottom: 20px;
   background-color: #f5f5f5;
 }
 

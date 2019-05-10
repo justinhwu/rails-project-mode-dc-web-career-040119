@@ -14,6 +14,7 @@ Supplier.destroy_all
 
 
 
+
 nike = Supplier.create(name: "Nike", description: "We sell stuff.")
 adidas = Supplier.create(name: "Adidas", description: "We sell Addidas stuff.")
 lays = Supplier.create(name: "Lays", description: "We sell snacks!")
