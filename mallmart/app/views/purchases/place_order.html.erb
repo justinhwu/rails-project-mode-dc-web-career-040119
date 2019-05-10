@@ -2,34 +2,29 @@
 
 <h3>Your order number is </h3>
 
-
 <table cellspacing='15'>
-
-<% @total = 0 %>
   <tr>
     <th>Item Name</th>
     <th>Item Price</th>
     <th>Item Total Price</th>
     <th>Item Quantity</th>
   </tr>
+  <% @total = 0 %>
+  <% @confirmation.each do |key, value| %>
+  <tr>
+    <td><%= key %></td>
+    <td>$<%= value[1]%></td>
+    <% total = (value[0] * value[1])%>
+    <td><%= total %></td>
+    <td><%= value[0]%></td>
+    <% @total += total %>
+  </tr>
+    <% end %>
+  <tr>
+    <th>Total Price: </th>
+    <th>$<%= @total %></th>
+  </tr>
+  </table>
+  <div>
 
-
-<% confirmation.each do |purchase|%>
-  <% @inventories.each do |inventory|%>
-      <tr>
-        <td> <%= inventory.name%> </td>
-        <td> <%= inventory.price%> </td>
-        <% total = (purchase["purchased_quantity"].to_f) * inventory.price%>
-        <td> <%= total %> </td>
-          <% @total += total %>
-        <td> <%= purchase["purchased_quantity"]%> </td>
-
-          <% end %>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Total Price: </th>
-          <th><%= @total %></th>
-        </tr>
-
-        </table>
+<%= link_to "Go back to homepage", destroy_order_path, method: 'get' %>

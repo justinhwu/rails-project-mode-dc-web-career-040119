@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get '/order', to: 'purchases#update_cart', as: 'update_cart'
   get '/confirmation', to: 'purchases#place_order', as: 'place_order'
+  get '/orderconfirmation', to: 'purchases#destroy_order', as: 'destroy_order'
 
   delete "/logout", to: "sessions#destroy", as: "logout"
   post '/inventories/:id', to: 'purchases#create'

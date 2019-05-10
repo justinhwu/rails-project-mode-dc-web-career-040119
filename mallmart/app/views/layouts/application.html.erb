@@ -16,6 +16,7 @@
     <div>
     <nav>
       <ul>
+          <% if !session["confirmation"] || (session["confirmation"].empty?) %>
         <li><%= link_to "homepage", inventories_path %></li>
           <% if session["customer_id"] %>
           <li><%= link_to "cart", purchases_path %></li>
@@ -24,6 +25,7 @@
           <% else %>
         <li><%= link_to "profile", login_path %></li>
         <li><%= link_to "Login", login_path %></li>
+          <%end%>
           <%end%>
       </ul>
     </nav>

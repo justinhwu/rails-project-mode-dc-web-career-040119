@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
 
   def index
     @customer = Customer.find(session[:customer_id])
-    @cart = get_cart_items
+    @cart = get_cart_items(cart)
   end
 
   def create
@@ -43,7 +43,7 @@ class PurchasesController < ApplicationController
 
   def checkout
     cart.each do |purchase|
-      Purchase.find_or_create_by(purchase)
+      Purchase.create(purchase)
     end
     session[:cart].clear
     @purchases = ((Customer.find(session[:customer_id])).purchases)
@@ -57,12 +57,21 @@ class PurchasesController < ApplicationController
   end
 
   def place_order
-    @inventories = []
     @customer = session[:customer_id]
-    confirmation.each do |purchase|
-      @inventories << Inventory.find(purchase["inventory_id"])
-    end
-    @inventories
+    @confirmation = get_cart_items(confirmation)
+    # @inventories = []
+    # @purchased_quantity = []
+    # confirmation.each do |purchase|
+    #   @inventories << Inventory.find(purchase["inventory_id"])
+    #   @purchased_quantity << purchase["purchased_quantity"]
+    # end
+    # @inventories
+  end
+
+  def destroy_order
+    session[:confirmation].clear
+    sleep 3
+    redirect_to inventories_path
   end
 
   def destroy
@@ -73,16 +82,16 @@ class PurchasesController < ApplicationController
   private
 
   def confirmation
-    session[:confirmation]
+    session[:confirmation] ||= []
   end
 
   def find_purchase
     @purchase = Purchase.find(params[:id])
   end
 
-  def get_cart_items
+  def get_cart_items(arg)
     find_hash = Hash.new
-    cart.each do |item|
+    arg.each do |item|
       item_name = Inventory.find(item['inventory_id'])
       if !find_hash[item_name.name]
         find_hash[item_name.name] = [item['purchased_quantity'].to_i, item_name.price]
