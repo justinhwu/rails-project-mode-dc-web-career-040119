@@ -27,15 +27,15 @@ class PurchasesController < ApplicationController
     @customer = (Customer.find(session[:customer_id])).purchases
     @customer.each do |purchase|
       if (purchase.incart? == false)
+        item = Inventory.find(purchase.inventory_id)
+        new_quantity = item.quantity - purchase.purchased_quantity
+        item.update(quantity: new_quantity)
+        if (item.quantity <= 0)
+          item.update(quantity: rand(10..100))
+        end
         confirmation << purchase
       end
       purchase.update(incart?: true)
-    end
-
-    @customer.each do |purchase|
-      item = Inventory.find(purchase.inventory_id)
-      new_quantity = item.quantity - purchase.purchased_quantity
-      item.update(quantity: new_quantity)
     end
     confirmation
     redirect_to place_order_path
@@ -59,6 +59,7 @@ class PurchasesController < ApplicationController
   def place_order
     @customer = session[:customer_id]
     @confirmation = get_cart_items(confirmation)
+
     # @inventories = []
     # @purchased_quantity = []
     # confirmation.each do |purchase|
