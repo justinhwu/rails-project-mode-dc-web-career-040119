@@ -4,7 +4,27 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @hash = {}
+    @customer.purchases.each do |purchase|
+      time = purchase.updated_at.strftime("%A, %B %d, %Y, %I")
+        if @hash[time]
+          @hash[time] << purchase
+        else
+          @hash[time] = [purchase]
+        end
+    end
+    @new_hash = Hash.new
+    @hash.each do |key, value|
+      value.each do |purchase|
+        item = Inventory.find(purchase.inventory_id)
+        if @new_hash[key]
+          @new_hash[key] << [item.name, purchase.purchased_quantity]
+        else @new_hash[key]
+          @new_hash[key] = [[item.name, purchase.purchased_quantity]]
+        end
+      end
+    end
+    @new_hash
   end
 
 def new
@@ -37,7 +57,7 @@ end
 private
 
 def find_id
-  @customer = Customer.find(params[:id])
+  @customer = Customer.find(session[:customer_id])
 end
 
 def strong_params

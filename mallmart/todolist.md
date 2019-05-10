@@ -37,3 +37,17 @@ Stretch Features
       <%= submit_tag "Place your order"%>
     <% end %>
   <% end %>
+
+
+  <table>
+    <tr>
+      <th>Item Name</th>
+      <th>Quantity</th>
+    </tr>
+    <% @customer.find_item.each do |key, value| %>
+      <tr>
+      <td> <%= key %> </td>
+      <td> <%= value%> </td>
+      </tr>
+    <% end %>
+  </table>

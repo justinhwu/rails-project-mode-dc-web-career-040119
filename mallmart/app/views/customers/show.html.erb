@@ -7,25 +7,26 @@
     <p>Username: <%= @customer.username%></p>
 
 </div>
-
-<div class='previous_purchases'>
   <label>Previous Purchases:</label>
-  <% if !@customer.find_item.empty? %>
-
-  <table>
-    <tr>
-      <th>Item Name</th>
-      <th>Quantity</th>
-    </tr>
-    <% @customer.find_item.each do |key, value| %>
+  <% if !@new_hash.empty? %>
+  <table cellspacing='15'>
+    <% @new_hash.each do |order_date, purchase|%>
       <tr>
-      <td> <%= key %> </td>
-      <td> <%= value%> </td>
+        <th>Purchases for: <%= order_date %> o'clock</th>
       </tr>
-    <% end %>
-  </table>
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+      </tr>
 
+      <% purchase.each do |item|%>
+        <tr>
+          <td><%= item[0] %></td>
+          <td><%= item[1] %></td>
+        </tr>
+      <% end %>
+    <% end %>
+</table>
   <% else %>
     <p>No items to display</p>
   <% end %>
-</div>

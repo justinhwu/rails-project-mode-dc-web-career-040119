@@ -11,7 +11,12 @@
   </thead>
   <tbody>
   <tr>
+    <% if (@inventory.quantity <=0) %>
+    <td>Sold Out</td>
+    <%= flash["notice"] = "Currently Restocking"%>
+      <% else %>
     <td><%= @inventory.quantity %></td>
+      <% end %>
     <td><%= @inventory.category %></td>
     <td><%= @inventory.description %></td>
     <td><%= @inventory.price %></td>
