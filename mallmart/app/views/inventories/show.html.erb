@@ -1,14 +1,15 @@
 <h2> <%= @inventory.name %> Details </h2>
 
-<table cellspacing="10">
+<table class= "table table-dark">
   <thead>
-    <th>Quantity</th>
-    <th>Category</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Supplier Name</th>
-    <th>Supplier Description</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Category</th>
+    <th scope="col">Description</th>
+    <th scope="col">Price</th>
+    <th scope="col">Supplier Name</th>
+    <th scope="col">Supplier Description</th>
   </thead>
+  <tbody>
   <tr>
     <td><%= @inventory.quantity %></td>
     <td><%= @inventory.category %></td>
@@ -17,13 +18,18 @@
     <td><%= @inventory.supplier.name%></td>
     <td><%= @inventory.supplier.description%></td>
   </tr>
+  </tbody>
 </table>
 
+<% if session[:customer_id] %>
 <%= form_for @purchase do |f| %>
   <%= f.select :purchased_quantity, (1..@inventory.quantity) %>
   <%= f.hidden_field :inventory_id, value: @inventory.id %>
   <%= f.hidden_field :customer_id, value: session[:customer_id]%>
   <%= f.submit "add to cart"%>
-<% end %>
-
-<%= link_to "Go back to the Hompage", inventories_path%>
+  <% end %>
+  <%= link_to "Go back to the Hompage", inventories_path%>
+<%
+else
+get_redirection
+end %>

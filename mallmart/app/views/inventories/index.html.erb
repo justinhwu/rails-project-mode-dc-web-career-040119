@@ -1,4 +1,9 @@
-<h2>Display Inventories</h2>
+<div class="row justify-content-md-center mainbkg">
+  <div class="col col-lg-2">
+    <h2>Display Inventories</h2>
+  </div>
+</div>
+
 <% @inventories.each do |inventory| %>
   <%= link_to inventory.name, inventory_path(inventory) %><br>
 <% end %>

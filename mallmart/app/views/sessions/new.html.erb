@@ -2,14 +2,15 @@
     <div class="error"><%= flash["notice"] %></div>
 <% end %>
 
-<div><%= form_for '/login' do %>
-  <%= label :username, "Username" %>
-  <%= text_field_tag :username %>
-  <%= label :password, "Password" %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Login" %>
-<% end %></div>
-
-<div>
-<%= link_to "Register a new account", new_customer_path, method: "get"%>
+<div class="" id="login-form">
+<%= form_for '/login',  html:  {class: "form-sign", id: "form-sign"}   do %>
+  <%= image_tag "logo1.png", height: '200', width: '200', alt: "company logo", class: "mb-4" %>
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <%= label :username, "Username",  class: "sr-only"%>
+  <%= text_field_tag :username, nil,  class: "form-control"%>
+  <%= label :password, "Password",  class: "sr-only" %>
+  <%= password_field_tag 'password', nil, class: "form-control" %>
+  <%= submit_tag "Login", class: "btn btn-lg btn-primary btn-block" %>
+  <%= link_to "Register a new account", new_customer_path, method: "get", class: "mt-5 mb-3"%>
+<% end %>
 </div>

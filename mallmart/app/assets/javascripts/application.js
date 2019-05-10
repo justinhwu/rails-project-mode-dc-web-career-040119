@@ -14,3 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+// add this mallmart
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets

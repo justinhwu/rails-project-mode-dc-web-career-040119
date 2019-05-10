@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-helper_method :cart
+helper_method :cart, :get_redirection
 
 
 def index
@@ -9,6 +9,8 @@ end
 def cart
   session[:cart] ||= []
 end
+
+
 
 
 end
